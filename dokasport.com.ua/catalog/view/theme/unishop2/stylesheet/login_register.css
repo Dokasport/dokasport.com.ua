@@ -1,0 +1,15 @@
+.modal-login__input {margin:0 0 10px}
+.modal-login__btn {margin:0 0 10px}
+.modal-login__links {display:flex;justify-content:space-between;font-size:.9em}
+.modal-login__link {border-bottom:dotted 1px}
+
+.modal-register__input {margin:0 0 10px}
+.modal-register__customer-group  label {display:block;margin:0;font-size:.95em}
+.modal-register__customer-group {margin:0 0 10px}
+.modal-register__agree {margin:0 0 10px;font-size:.95em}
+.modal-register__btn {margin:0 0 10px}
+.modal-register__links {font-size:.9em}
+.modal-register__link {border-bottom:dotted 1px}
+
+.modal-register .captcha__wrapper {padding:0}
+.modal-register .captcha__title{padding:0 0 5px;font-size:.9em}

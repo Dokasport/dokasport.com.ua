@@ -1,0 +1,17 @@
+.subscribe{position:relative;margin:-15px 0 15px;padding:15px 0 10px;background:rgba(255, 255, 255, .08)}
+.subscribe__info {overflow:hidden;margin:-2px 0 0;line-height:18px;font-size:1.0em}
+.subscribe__info div {float:left;height:32px;line-height:35px;margin:0 10px 0 0;font-size:2.9em}
+.subscribe__inputblock {overflow:hidden}
+.subscribe__email, .subscribe__pass {float:left;overflow:hidden;transition:all ease-in-out .3s}
+.subscribe__email {width:100%}
+.subscribe__pass {width:0}
+.subscribe__email.show-pass{width:70%}
+.subscribe__pass.show-pass{width:30%;padding:0 0 0 20px}
+.subscribe__input, .subscribe__btn {height:32px}
+.subscribe__input {border:none}
+.subscribe__agree {margin:10px 0 0;font-size:.85em}
+.subscribe__agree span {width:12px;height:12px}
+.subscribe__agree b {font-weight:400;text-decoration:underline}
+@media (max-width:767px){
+	.subscribe__inputblock {margin:10px 0}
+}

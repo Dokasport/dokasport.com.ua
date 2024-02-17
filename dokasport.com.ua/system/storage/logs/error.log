@@ -1,0 +1,5 @@
+2020-12-17 9:51:49 - PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'a76043_7_user'@'localhost' (using password: YES) in /home/a76043/public_html/dokasport.com.ua/system/library/db/mysqli.php on line 7
+2020-12-17 9:51:49 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /home/a76043/public_html/dokasport.com.ua/system/library/db/mysqli.php on line 10
+2020-12-17 9:51:49 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /home/a76043/public_html/dokasport.com.ua/system/library/db/mysqli.php on line 10
+2020-12-17 9:51:49 - PHP Notice:  Undefined variable: mysql in /home/a76043/public_html/dokasport.com.ua/install/controller/install/step_3.php on line 280
+2020-12-17 9:51:49 - PHP Notice:  Trying to get property 'connect_error' of non-object in /home/a76043/public_html/dokasport.com.ua/install/controller/install/step_3.php on line 280

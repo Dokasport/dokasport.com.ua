@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html dir="{{ direction }}" lang="{{ lang }}">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-184175830-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-184175830-1');
+</script>
+    <meta name="google-site-verification" content="BPBKSs1eRA1U1v9IK7GX_myctiWHYwK_C3a8xSaJRTg" />
+<title>{{ title }}</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<base href="{{ base }}" />
+{% if robots %}
+<meta name="robots" content="{{ robots }}" />
+{% endif %}
+{% if description %}
+<meta name="description" content="{{ description }}" />
+{% endif %}
+{% if keywords %}
+<meta name="keywords" content="{{ keywords }}" />
+{% endif %}
+<meta property="og:title" content="{{ title }}" />
+<meta property="og:type" content="website" />
+{% if og_url%}
+<meta property="og:url" content="{{ og_url }}" />
+{% endif %}
+{% if og_image %}
+<meta property="og:image" content="{{ og_image }}" />
+{% else %}
+<meta property="og:image" content="{{ logo }}" />
+{% endif %}
+<meta property="og:site_name" content="{{ name }}" />
+<meta name="theme-color" content="#{{ theme_color }}" />
+{% for link in links %}
+<link href="{{ link.href }}" rel="{{ link.rel }}" />
+{% endfor %}
+<link href="catalog/view/theme/unishop2/fonts/rubik-regular.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
+<link href="catalog/view/theme/unishop2/fonts/rubik-medium.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
+<link href="catalog/view/theme/unishop2/fonts/fa-solid-900.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
+<link href="catalog/view/theme/unishop2/fonts/fa-regular-400.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
+<link href="catalog/view/theme/unishop2/fonts/fa-brands-400.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
+{% if merged_style %}
+	<link href="{{ merged_style }}" rel="preload" as="style" />
+	<link href="{{ merged_style }}" rel="stylesheet" media="screen" />
+{% else %}
+	<link href="catalog/view/theme/unishop2/stylesheet/bootstrap.min.css" rel="stylesheet" media="screen" />
+	<link href="catalog/view/theme/unishop2/stylesheet/stylesheet.css?v={{ version }}" rel="stylesheet" media="screen" />
+	<link href="catalog/view/theme/unishop2/stylesheet/font-awesome.min.css" rel="stylesheet" media="screen" />
+	<link href="{{ generated_style }}" rel="stylesheet" media="screen" />
+	<link href="catalog/view/theme/unishop2/stylesheet/animate.css" rel="stylesheet" media="screen" />
+{% endif %}
+{% for style in styles %}
+	<link href="{{ style.href }}" rel="{{ style.rel }}" media="{{ style.media }}" />
+{% endfor %}
+<script>var items_on_mobile = {{ items_on_mobile }}, module_on_mobile = '{{ module_on_mobile }}', default_view = '{{ default_view }}';</script>
+{% if merged_script %}
+	<link href="{{ merged_script }}" rel="preload" as="script" />
+	<script src="{{ merged_script }}"></script>
+{% else %}
+	<script src="catalog/view/theme/unishop2/js/jquery-2.2.4.min.js"></script>
+	<script src="catalog/view/theme/unishop2/js/bootstrap.min.js"></script>
+	<script src="catalog/view/theme/unishop2/js/common.js"></script>
+	<script src="catalog/view/theme/unishop2/js/owl.carousel.min.js"></script>
+	<script src="catalog/view/theme/unishop2/js/menu-aim.min.js"></script>
+	<script src="catalog/view/theme/unishop2/js/jquery.highlight.min.js"></script>
+{% endif %}
+{% for script in scripts %}
+	<script src="{{ script }}"></script>
+{% endfor %}
+{% if user_js %}
+<script>{{ user_js }}</script>
+{% endif %}
+{% for analytic in analytics %}
+	{{ analytic }}
+{% endfor %}
+<noscript><style>.uni-module__wrapper{opacity:1}</style></noscript>
+</head>
+<body {{ class ? 'class="'~class~'"' }}>
+	<header>
+		<div id="top" class="top-menu">
+			<div class="container">
+				<div class="pull-right">
+					<div id="account" class="btn-group">
+						<button class="top-menu__btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><span class="hidden-xs">{{ logged ? customer_name : text_account }}</span></button>
+						<ul class="dropdown-menu dropdown-menu-right">
+							{% if logged %}
+								<li><a href="{{ account }}">{{ text_account }}</a></li>
+								<li><a href="{{ order }}">{{ text_order }}</a></li>
+								<li><a href="{{ transaction }}">{{ text_transaction }}</a></li>
+								<li><a href="{{ download }}">{{ text_download }}</a></li>
+								<li><a href="{{ logout }}">{{ text_logout }}</a></li>
+							{% else %}
+								<li><a {% if show_register %}onclick="uniRegisterOpen();"{% else %} href="{{ register }}" {% endif %}>{{ text_register }}</a></li>
+								<li><a {% if show_login %}onclick="uniLoginOpen();"{% else %} href="{{ login }}"{% endif %}>{{ text_login }}</a></li>
+							{% endif %}
+						</ul>
+					</div>
+				</div>
+				{{ language }}
+				{{ currency }}
+				{% if search_mob_hide %}
+					<div class="pull-right visible-xs">
+						<div class="btn-group">
+							<button class="top-menu__btn" onclick="$('#search').toggleClass('show'); $('#search input[name=\'search\']').focus();"><i class="fa fa-search"></i></button>
+						</div>
+					</div>
+				{% endif %}
+				{% if headerlinks %}
+					<div class="pull-left">
+						<div class="top-links btn-group">
+							<button class="top-menu__btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-info"></i></button>
+							<ul class="top-links__ul dropdown-menu dropdown-menu-left">
+								{% for headerlink in headerlinks %}
+									<li class="top-links__li"><a class="top-links__a" href="{{ headerlink.link }}" title="{{ headerlink.title }}">{{ headerlink.title }}</a></li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+		<div class="container">
+			<div class="header-block row row-flex">
+				<div class="header-block__item col-xs-5 col-sm-6 col-md-3 col-xxl-4">
+					<div id="logo" class="header-logo">
+						{% if logo %}
+							{% if og_url is defined and home == og_url %}
+								<img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="header-logo__img img-responsive" />
+							{% else %}
+								<a href="{{ home }}"><img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" /></a>
+							{% endif %}
+						{% else %}
+							{% if og_url is defined and home == og_url %}
+								<span>{{ shop_name }}</span>
+							{% else %}
+								<a href="{{ home }}">{{ shop_name }}</a>
+							{% endif %}
+						{% endif %}
+					</div>
+				</div>
+				<div class="header-block__item col-xs-5 col-sm-4 col-md-3 col-xxl-4 {{ search_phone_change ? '' : 'col-md-push-5 col-xxl-push-10' }}">
+					<div class="header-phones">
+						<span class="header-phones__main uni-href" {{ main_phones.0.href ? 'data-href="'~main_phones[0].href~'"' }} >{{ main_phones.0.number }}</span>
+						{% if phones or text_in_add_contacts %}
+							<i class="header-phones__show-phone dropdown-toggle fas fa-chevron-down" data-toggle="dropdown"></i>
+							<ul class="header-phones__ul dropdown-menu dropdown-menu-right">
+								{% if callback %}
+									<li class="header-phones__li">
+										<a onclick="uniRequestOpen(['mail', 'phone', 'comment']);" class="header-phones__callback"><span class="header-phones__span">{{ text_header_callback }}</span></a>
+									</li>
+								{% endif %}
+								{% if text_in_add_contacts_position and text_in_add_contacts %}
+									<li class="header-phones__text"><hr style="margin-top:0px;" />{{ text_in_add_contacts }}<hr style="margin-bottom:5px;" /></li>
+								{% endif %}
+								{% for phone in phones %}
+									<li class="header-phones__li {{ phone.main is defined ? 'visible-xs' }}">
+										<a class="header-phones__a uni-href" {{ phone.href ? 'data-href="'~phone.href~'"' }}>
+											{% if phone.icon and 'fa-' in phone.icon %}
+												<i class="{{ phone.icon }}"></i>
+											{% elseif phone.icon %}
+												<img src="image/{{ phone.icon }}" alt="" />
+											{% endif %}
+											{{ phone.number }}
+										</a>
+									</li>
+								{% endfor %}
+								{% if not text_in_add_contacts_position and text_in_add_contacts %}
+									<li class="header-phones__text"><hr style="margin-top:5px" />{{ text_in_add_contacts }}</li>
+								{% endif %}
+							</ul>
+						{% endif %}
+						{% if main_phones|length > 1 %}
+							<div class="header-phones__additionals">
+								{% for key, phone in main_phones %}
+									<span class="header-phones__additional {{ key == 0 ? 'selected' }}" data-href="{{ phone.href }}" data-phone="{{ phone.number }}">
+									{% if phone.icon and 'fa-' in phone.icon %}
+										<i class="{{ phone.icon }}" data-toggle="tooltip" data-placement="left" title="{{ phone.text }}"></i>
+									{% elseif phone.icon %}
+										<img src="image/{{ phone.icon }}" alt="" data-toggle="tooltip" data-placement="left" title="{{ phone.text }}" />
+									{% else %}
+										{{ phone.text }}
+									{% endif %}
+									</span>
+								{% endfor %}
+							</div>
+						{% endif %}
+					</div>
+				</div>
+				<div class="header-block__item col-xs-2 col-sm-2 col-md-1 col-xxl-2 col-md-push-5 col-xxl-push-10">{{ cart }}</div>
+				<div id="search" class="header-block__item col-xs-12 col-sm-6 col-md-5 col-lg-5 col-xxl-10 {{ search_phone_change ? 'col-md-pull-1 col-xxl-pull-2' : 'col-md-pull-4 col-xxl-pull-6' }} hidden-sm {{ search_mob_hide ? 'mobhide' }}">
+					{{ search }}
+				</div>
+			</div>
+		</div>
+		<div id="main-menu" class="container">
+			<div class="row">
+				{{ menu }}
+				<div id="search2" class="col-sm-6 col-md-5 visible-sm"></div>
+				<script>$('#search .header-search').clone().appendTo('#search2');</script>
+			</div>
+		</div>
+	</header>
+	<main>

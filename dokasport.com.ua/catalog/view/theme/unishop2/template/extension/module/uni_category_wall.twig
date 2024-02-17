@@ -1,0 +1,27 @@
+{% if categories %}
+	{% if heading_title %}
+		<div class="heading"><span>{{ heading_title }}</span></div>
+	{% endif %}
+	<div class="category-wall row row-flex">
+		{% for category in categories %}
+			<div class="{{ columns }}">
+				<div class="category-wall__item uni-item">
+				{% if category.image %}
+					<a href="{{ category.href }}" class="category-wall__image {{  category.childs ? 'childs'  }}">
+						<img src="{{ category.image }}" loading="lazy" alt="{{ category.name }}" class="img-responsive" />
+						<span class="category-wall__title banner-label btn-primary">{{ category.name }}</span>
+					</a>
+				{% endif %} 
+				{% if category.childs %}
+					<ul class="category-wall__ul child">
+						{% for child in category.childs %}
+							<li class="category-wall__li"><a href="{{ child.href }}">{{ child.name }}</a></li>
+						{% endfor %}
+					</ul>
+					<a class="category-wall__more uni-href" data-href="{{ category.href }}"><span>{{ text_all_cats }}</span></a>
+				{% endif %} 
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endif %} 

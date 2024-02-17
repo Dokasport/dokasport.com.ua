@@ -1,0 +1,30 @@
+{% if news %}
+	<div class="news-list">
+		{% for news in news %}
+			<div class="news-list__item uni-item row row-flex">
+				<!--
+				{% if news.image %}
+					<div class="news-list__image col-xs-12 col-sm-3 col-md-3 col-lg-2 col-xxl-3">
+						<a class="uni-href" data-href="{{ news.href }}" title="{{ news.name }}">
+							<img src="{{ news.image }}" alt="{{ news.name }}" class="img-responsive" />
+						</a>
+					</div>
+				{% endif %}
+				-->
+				<!-- <div class="col-sm-9 col-md-9 col-lg-10 col-xxl-17"> -->
+				<div class="col-xs-12">
+					<div class="news-list__description">
+						<a href="{{ news.href }}" title="{{ news.name }}" class="news-list__name">{{ news.name }}</a>
+						{{ news.description }}
+					</div>
+					<div class="news-list__posted">
+						<i class="news-list__icon fa fa-calendar"></i>{{ news.posted }}
+						<i class="news-list__icon fa fa-eye"></i>{{ news.viewed }}
+						<a class="news-list__more uni-href" data-href="{{ news.href }}">{{ text_more }} &rarr;</a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+	<script>$('body').find('.tab-news span').removeClass('hidden').text(' {{ news|length }}');</script>
+{% endif %}

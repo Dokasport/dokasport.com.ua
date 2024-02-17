@@ -1,0 +1,56 @@
+<div id="uni-slideshow-{{ module }}" class="uni-slideshow {{ hide ? 'hidden-xs' }}">
+	{% if not fullwidth %}
+		{% for banner in banners %}
+			<div class="uni-slideshow__item" style="height:{{ height }}px">
+				<div class="uni-slideshow__image {{ banner.title or banner.text or banner.button ? 'col-sm-6' : 'col-sm-12' }}">
+					{{ banner.link ? '<a href="'~banner.link~'">' }}
+					<img src="data:image/gif;base64,R0lGODlhAQABAIABAP///wAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ banner.image }}" alt="{{ banner.title }}" class="uni-slideshow__img owl-lazy img-responsive" height="{{ height }}" />
+					{{ banner.link ? '</a>' }}
+				</div>
+				{% if banner.title or banner.text or banner.button %}
+					<div class="uni-slideshow__description col-sm-6">
+						<h4 class="uni-slideshow__title">{{ banner.title }}</h4>
+						<p class="uni-slideshow__text">{{ banner.text }}</p>
+						<button class="uni-slideshow__btn uni-href btn" data-href="{{ banner.link }}">{{ banner.button }}</button>
+					</div>
+				{% endif %}
+			</div>
+		{% endfor %}
+	{% else %}
+		{% for banner in banners %}
+			<div class="uni-slideshow__item fullwidth">
+				<div class="uni-slideshow__image fullwidth">
+					{{ banner.link ? '<a href="'~banner.link~'">' }}
+					<img src="data:image/gif;base64,R0lGODlhAQABAIABAP///wAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ banner.image }}" alt="{{ banner.title }}" class="uni-slideshow__img fullwidth owl-lazy img-responsive" style="height:{{ height }}px" />
+					{{ banner.link ? '</a>' }}
+				</div>
+				{% if banner.title or banner.text or banner.button %}
+					<div class="uni-slideshow__description fullwidth col-sm-7">
+						<h4 class="uni-slideshow__title fullwidth">{{ banner.title }}</h4>
+						<p class="uni-slideshow__text fullwidth">{{ banner.text }}</p>
+						<button class="uni-slideshow__btn uni-href btn fullwidth" data-href="{{ banner.link }}">{{ banner.button }}</button>
+					</div>
+				{% endif %}
+			</div>
+		{% endfor %}
+	{% endif %}
+</div>
+<script>
+var hide = {{ hide ? 'true' : 'false' }};
+
+if(!hide || hide && $(window).width() > 767) {
+	$('#uni-slideshow-{{ module }}').addClass('owl-carousel').owlCarousel({
+		items:1,
+		autoplay:true,
+		animateIn:'{{ effect_in }}',
+		animateOut:'{{ effect_out }}',
+		autoplayTimeout:{{ delay > 0 ? delay*1000 : 5000 }},
+		autoplayHoverPause:true,
+		mouseDrag:{{ banners|length > 1 ? 'true' : 'false' }},
+		nav:true,
+		loop:true,
+		lazyLoad:true,
+		navText: ['<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>'],
+	});
+}
+</script>
